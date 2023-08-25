@@ -84,11 +84,7 @@
                                 
                                 delete
                             </button>
-                            <button class="btn btn-warning"
-                                @click="(plan_name_bll=x.plan_name),(sms_cost=x.sms_price), (call_cost = x.call_price),(ed_id=x.id),(hidePlan=true)">
-                                <!-- <i class="fas fa-pen-to-square"></i> -->
-                                    select plan
-                            </button>
+                            
 
 
 
@@ -108,24 +104,20 @@
                     <div class="card-body">
                         <h3 class="card-title">Total Phone Bill</h3>
                         <div>
-                            <span>Bill: </span><span x-text="phonebill"></span><br>
+                            <span>Bill: </span><span x-text="total"></span><br>
 
 
-                            <span>Price plan: </span><span x-text="plan_name_bll"></span><br>
-                            <span>SMS COST: <span x-text="sms_cost"></span></span><br>
-                            <span>CALL COST: <span x-text="call_cost"></span></span><br>
-                            <span>Action: </span><span x-text="action"></span>
+                            
                         </div>
-                        
-
-
-                        <input  type="text" x-model="enteredBill"
+                        <input  type="text" x-model="actions"
                             placeholder="enter a bill..." /><br>
 
-                        <button c x-show="hidePlan" @click="(totalPhoneBill(phonebill)), (phonebill=enteredBill), (setTimeout(() => {
-                        billTotal='';
-                                enteredBill= '';
-                              }, 3000))">Done</button>
+
+
+                        <input  type="text" x-model="selectedName"
+                            placeholder="enter a bill..." /><br>
+
+                        <button  x-show="hidePlan" @click="phoneBill">Done</button>
                     </div>
                 </div>
             </div>

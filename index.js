@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPricePlans, addPricePlans, updatePricePlans, deletePricePlans, calcBill } from './db.js';
+import { getPricePlans, addPricePlans, updatePricePlans, deletePricePlans, totalPhoneBill } from './db.js';
 
 
 
@@ -31,27 +31,18 @@ app.get('/api/price_plans/', async (req, res) => {
 })
 
 // calclate bll
-app.post('/api/phonebill/', async (req, res) => {
 
-    const price_name = req.body.price_name;
+
+app.post('/api/price_plan/phonebill/', async (req, res) => {
+
+    const plan_name = req.body.plan_name;
     const actions = req.body.actions;
     
-    // await addPricePlans(plan_name, sms_price, call_price);
-
     res.json({
         status: 'success',
-        message: `Bill for price plan '${price_name}' & action: '${actions}'.`
+        total: await totalPhoneBill(actions, plan_name)
     })
 })
-
-// uwir
-
-// I
-// { }
-// [
-// ]
-
-// ${ }
  
 app.post('/api/price_plan/create', async (req, res) => {
 
@@ -102,17 +93,3 @@ app.post('/api/price_plan/delete', async (req, res)=> {
 
 
 
-app.post('/api/phonebll', async (req, res)=> {
-    const plan_name = req.body.plan_name;
-    const sms_price = req.body.sms_price;
-    const call_price = req.body.call_price;
-
-    await calcBill(plan_name, sms_price, call_price);
-
-
-    res.json({
-        status: 'Success',
-        message: `selected plan: '${plan_name}'`
-
-    })  
-})
